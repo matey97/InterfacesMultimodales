@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<grammar xmlns="http://www.w3.org/2001/06/grammar"
+         xml:lang="es-es" 
+         tag-format="semantics/1.0"
+         version="1.0" 
+         root="flight_book">
+  
+  <rule id="flight_book">
+    <!-- Opcionalmente, se puede decir "por favor" al inicio de la frase -->
+    <item repeat="0-1">por favor,</item>
+    <ruleref uri="#sentences"></ruleref>
+  </rule>
+
+  <rule id="sentences">
+    <!-- Hay tres tipos principales de frases, un basica, varias completas y la pregunta -->
+    <one-of>
+      <item><ruleref uri="#basic"></ruleref></item>
+      <item><ruleref uri="#complete"></ruleref></item>
+      <item><ruleref uri="#question"></ruleref></item>
+    </one-of>
+  </rule>
+
+  <rule id="basic">
+    <example>quiero ir a Barcelona</example>
+    
+    quiero ir a 
+    <ruleref uri="#cities"></ruleref>
+    <tag>out.Destination = rules.cities;</tag>
+    <!-- Por defecto, en esta frase, el tipo es de ida -->
+    <tag>out.Type = "ida";</tag>
+  </rule>
+
+  <rule id="complete">
+    <example>un billete de ida a/para Madrid</example>
+    <example>un billete barato de ida a/para Madrid</example>
+    <example>un billete de ida y vuelta a/para Madrid</example>
+    <example>un billete barato de ida y vuelta a/para Madrid</example>
+    <example>quiero un vuelo de ida a/para Madrid</example>
+    <example>quiero un vuelo barato de ida a/para Madrid</example>
+    <example>quiero un vuelo de ida t vuelta a/para Madrid</example>
+    <example>quiero un vuelo barato de ida y vuelta a/para Madrid</example>
+
+    <one-of>
+      <item>un billete</item>
+      <item>quiero un vuelo</item>
+    </one-of>
+    <ruleref uri="#priceTypeAndCity"></ruleref>
+  </rule>
+
+  <rule id="question">
+    ¿hay algun vuelo para mañana?
+    <!-- Variable semantica para saber que se ha reconocido la pregunta -->
+    <tag>out.TomorrowFlights = true</tag>
+  </rule>
+
+  <!-- tipo de precio (opcional) + tipo de vuelo + a/para + ciudad destino -->
+  <rule id="priceTypeAndCity">
+    <ruleref uri="#price"></ruleref>
+    <tag>out.Price = rules.price;</tag>
+    de
+    <ruleref uri="#type"></ruleref>
+    <tag>out.Type = rules.type;</tag>
+    <one-of>
+      <item>a</item>
+      <item>para</item>
+    </one-of>
+    <ruleref uri="#cities"></ruleref>
+    <tag>out.Destination = rules.cities;</tag>
+  </rule>
+
+  <!-- Tipos de vuelo disponibles -->
+  <rule id="type">
+    <one-of>
+      <item>ida</item>
+      <item>ida y vuelta</item>
+    </one-of>
+  </rule>
+
+  <!-- Ciudades destino disponibles -->
+  <rule id="cities">
+    <one-of>
+      <item>Barcelona</item>
+      <item>Madrid</item>
+      <item>Londres</item>
+      <item>Paris</item>
+      <item>Berlín</item> 
+    </one-of>
+  </rule>
+
+  <!-- Precios disponibles, opcional -->
+  <rule id="price">
+    <one-of>
+      <item repeat="0-1">barato</item>
+      <item repeat="0-1">caro</item>
+    </one-of>
+  </rule>
+  
+</grammar> 

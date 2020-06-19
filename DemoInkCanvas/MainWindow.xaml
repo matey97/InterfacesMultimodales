@@ -1,0 +1,30 @@
+﻿<Window x:Class="DemoInkCanvas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <InkCanvas Name="CanvasDeTinta">
+        </InkCanvas>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Slider Name="wSlider" ValueChanged="wSlider_ValueChanged"/>
+            <Slider Name="hSlider" Grid.Column="1" ValueChanged="hSlider_ValueChanged"/>
+        </Grid>
+        <ComboBox Grid.Row="2" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem IsSelected="True">Negro</ComboBoxItem>
+            <ComboBoxItem>Rojo</ComboBoxItem>
+            <ComboBoxItem>Azul</ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</Window>

@@ -1,0 +1,82 @@
+﻿<Window x:Class="Agenda.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Agenda"
+        mc:Ignorable="d"
+        Title="Agenda" SizeToContent="Height" Width="300">
+    <Window.Resources>
+        <SolidColorBrush x:Key="Fondo" Color="Aqua"/>
+        <local:ConvierteEnPorcentaje x:Key="PercentageConverter"/>
+    </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Menu Grid.Row="0">
+                <MenuItem Header="_Archivo">
+                    <MenuItem Click="MenuNuevo_Click" Header="_Nuevo"/>
+                    <MenuItem Click="MenuAbrir_Click" Header="_Abrir"/>
+                    <MenuItem Click="MenuGuardar_Click" Header="_Guardar"/>
+                    <Separator/>
+                    <MenuItem Click="MenuSalir_Click" Header="_Salir"/>
+                </MenuItem>
+                <MenuItem Click="Buscar_Click" Header="_Buscar"/>
+            </Menu>
+
+            <Grid Grid.Row="1" Margin="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Background="{StaticResource Fondo}" Target="{Binding ElementName=CajaNombre}">_Nombre:</Label>
+                <TextBox Name="CajaNombre" Grid.Column="1" Margin="0,2" ToolTip="Introduce el nombre"></TextBox>
+
+                <Label Background="{StaticResource Fondo}" Target="{Binding ElementName=CajaApellidos}" Grid.Row="1">_Apellidos:</Label>
+                <TextBox Name="CajaApellidos" Grid.Row="1" Grid.Column="1" Margin="0,2" ToolTip="Introduce los apellidos"></TextBox>
+
+                <Label Background="{StaticResource Fondo}" Target="{Binding ElementName=CB_IsFriend}" Grid.Row="2">_Es amigo:</Label>
+                <CheckBox Name="CB_IsFriend" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"></CheckBox>
+
+                <Label Background="{StaticResource Fondo}" Grid.Row="3">Sexo:</Label>
+                <ComboBox Grid.Row="3" Grid.Column="1">
+                    <ComboBoxItem Name="CB_Man">Hombre</ComboBoxItem>
+                    <ComboBoxItem Name="CB_Woman">Mujer</ComboBoxItem>
+                    <ComboBoxItem Name="CB_Unknown">Indeterminado</ComboBoxItem>
+                </ComboBox>
+   
+
+                <UniformGrid  Grid.Row="4" Grid.Column="0" Columns="2" Margin="0,6,0,0">
+                    <Button Name="prevButton" Click="ButtonPrev">&lt;</Button>
+                    <Button Name="nextButton" Click="ButtonNext">&gt;</Button>
+                </UniformGrid>
+                <UniformGrid Columns="3" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,6,0,0">
+                    <Button Name="addButton" Click="ButtonAdd">Añadir</Button>
+                    <Button Name="modifyButton" Click="ButtonModify">Modificar</Button>
+                    <Button Name="deleteButton" Click="ButtonDelete">Borrar</Button>
+                </UniformGrid>
+
+
+                <TextBlock Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="{Binding ElementName=ElSlider, Path=Value, Converter={StaticResource PercentageConverter}}"></TextBlock>
+                <Slider Name="ElSlider" Grid.RowSpan="3" Grid.Row="1" Grid.Column="2" 
+                    Orientation="Vertical" HorizontalAlignment="Center"
+                    Minimum="0" Maximum="99.99" Value="0"
+                    ValueChanged="ElSlider_ValueChanged"></Slider>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Window>

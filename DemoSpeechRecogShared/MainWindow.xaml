@@ -1,0 +1,24 @@
+﻿<Window x:Class="DemoSpeechRecogShared.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoSpeechRecogShared"
+        mc:Ignorable="d"
+        Title="Speech Recognition (Shared) Demo" Width="400" SizeToContent="Height">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0">Texto reconocido:</Label>
+        <Label Name="labelTextoReconocido" Grid.Row="0" Grid.Column="1"></Label>
+        <Label Grid.Row="1" Grid.Column="0">Probabilidad:</Label>
+        <Label Name="labelProbabilidad" Grid.Row="1" Grid.Column="1"></Label>
+    </Grid>
+</Window>

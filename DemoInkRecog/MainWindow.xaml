@@ -1,0 +1,22 @@
+﻿<Window x:Class="DemoInkRecog.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoInkRecog"
+        mc:Ignorable="d"
+        Title="Demo Ink Recognition" Height="300" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <InkCanvas Name="myInkCanvas" Background="LightGray" Margin="4"></InkCanvas>
+
+        <TextBox Grid.Row="1" Name="myTextBox" Background="LightGreen" IsReadOnly="True" Margin="4" FontSize="20"></TextBox>
+
+        <Button Grid.Row="2" Click="Button_Click" Margin="4">Reconocer</Button>
+    </Grid>
+</Window>

@@ -1,0 +1,39 @@
+﻿<Window x:Class="Agenda.SearchDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Agenda"
+        mc:Ignorable="d"
+        Title="Búsqueda" SizeToContent="Height" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Target="{Binding ElementName=CajaBusqueda}">_Búsqueda:</Label>
+        <TextBox Name="CajaBusqueda" Grid.Column="1" Margin="0,2" ToolTip="Introduce tu búsqueda"></TextBox>
+
+        <UniformGrid  Grid.Row="1" Grid.Column="1" Columns="2" Margin="0,6,0,0">
+            <Button Name="searchButton" Click="Search_Ok">
+                <Button.Style>
+                    <Style>
+                        <Setter Property="Button.IsEnabled" Value="True"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=CajaBusqueda, Path=Text.Length}" Value="0">
+                                <Setter Property="Button.IsEnabled" Value="False"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                Ok
+            </Button>
+            <Button Click="Search_Cancel">Cancelar</Button>
+        </UniformGrid>
+    </Grid>
+</Window>

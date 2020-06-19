@@ -1,0 +1,16 @@
+﻿<Window x:Class="DemoSynthesis.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoSynthesis"
+        mc:Ignorable="d"
+        Title="DemoSynthesis" SizeToContent="WidthAndHeight">
+    <StackPanel Width="400">
+        <TextBox Name="TB_text" Background="LightYellow" Margin="4" TextChanged="TB_text_TextChanged"></TextBox>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="4">
+            <ComboBox Name="CB_voices" SelectionChanged="CB_voices_SelectionChanged"></ComboBox>
+            <Button Name="Button_speak" Margin="8,0,0,0" Padding="8,0" Click="Button_Click" IsDefault="True">Speak</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

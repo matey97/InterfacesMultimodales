@@ -1,0 +1,12 @@
+﻿<Window x:Class="UdpmoteLevel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UdpmoteLevel"
+        mc:Ignorable="d"
+        Title="UDPmote Level" SizeToContent="Height" Width="400">
+    <Grid>
+        <Label Name="L_Degrees" FontSize="60" HorizontalContentAlignment="Center">0º</Label>
+    </Grid>
+</Window>
